@@ -1,3 +1,10 @@
+# |-----------------------------------------------------------------------------
+# |            This source code is provided under the Apache 2.0 license      --
+# |  and is provided AS IS with no warranty or guarantee of fit for purpose.  --
+# |                See the project's LICENSE.md for details.                  --
+# |           Copyright Refinitiv 2021. All rights reserved.                  --
+# |-----------------------------------------------------------------------------
+
 import eikon as ek
 import configparser as cp
 import json
@@ -52,7 +59,16 @@ RCEP: Regional Comprehensive Economic Partnership
         - Australia
         - New Zealand
 """
+# Thailand all static
+rics_thailand = ['THCCOV=ECI','THNCOV=ECI','THRCOV=ECI','THACOV=ECI','THDCOV=ECI']
+# RCEP Contries Covid-19 total cases
+rics_rcep_total_cases = ['BNCCOV=ECI','KHCCOV=ECI','IDCCOV=ECI','LACCOV=ECI','MYCCOV=ECI','MMCCOV=ECI','PHCCOV=ECI','SGCCOV=ECI','THCCOV=ECI','VNCCOV=ECI','CNCCOV=ECI','JPCCOV=ECI','KRCCOV=ECI','AUCCOV=ECI','NZCCOV=ECI']
+# RCEP Contries Covid-19 new cases
+rics_rcep_new_cases = ['BNNCOV=ECI','KHNCOV=ECI','IDNCOV=ECI','LANCOV=ECI','MYNCOV=ECI','MMNCOV=ECI','PHNCOV=ECI','SGNCOV=ECI','THNCOV=ECI','VNNCOV=ECI','CNNCOV=ECI','JPNCOV=ECI','KRNCOV=ECI','AUNCOV=ECI','NZNCOV=ECI']
+# RCEP Contries Covid-19 death cases
+rics_rcep_death_cases = ['BNDCOV=ECI','KHDCOV=ECI','IDDCOV=ECI','LADCOV=ECI','MYDCOV=ECI','MMDCOV=ECI','PHDCOV=ECI','SGDCOV=ECI','THDCOV=ECI','VNDCOV=ECI','CNDCOV=ECI','JPDCOV=ECI','KRDCOV=ECI','AUDCOV=ECI','NZDCOV=ECI']
 
+# Get a List of readable Country Name and Event for adding new DataFrame column
 def get_events_descriptions(list_rics):
     list_result = []
     for ric in list_rics:
@@ -61,6 +77,7 @@ def get_events_descriptions(list_rics):
         list_result.append('{country} {event}'.format(country = rcep_country_code[country_code], event = covid19_rics_pattern[event]))
     return list_result
 
+# Get a Dictionary of readable Country Name and Event for replacing DataFrame column names
 def get_events_columns(list_rics):
     dict_result = {}
     for ric in list_rics:
@@ -70,7 +87,7 @@ def get_events_columns(list_rics):
 
     return dict_result
 
-
+# -------------------- Main ------------------------------------------------- #
 if __name__ == "__main__":
     print('#----------- Initialize Session -------------#')
     cfg = cp.ConfigParser()
@@ -88,31 +105,33 @@ if __name__ == "__main__":
             'ECON_PRIOR' #Previous value
     ]
 
-    rics_thailand = ['THCCOV=ECI','THNCOV=ECI','THRCOV=ECI','THACOV=ECI','THDCOV=ECI']
-
+    # Get Thailand Today Covid-19 static
     df_thailand, err = ek.get_data(rics_thailand, fields)
     
     # Rename Instrument to be readable value
     #events_rename={'THCCOV=ECI': 'Total Cases','THNCOV=ECI': 'New Cases', 'THRCOV=ECI': 'Recover Cases', 'THACOV=ECI': 'Active Cases', 'THDCOV=ECI': 'Death Cases'}
     #df_thailand.replace(events_rename, inplace = True)
 
-    # Today Data for RCEP Countries
+    # Today Data for RCEP Countries static
 
     fields = ['COUNTRY',    #Country code
             'CF_DATE', #Announcement Date
             'ECON_ACT', #Actual value
             'ECON_PRIOR' #Previous value
     ]
+    # RCEP Contries Covid-19 total cases
+    df_rcep_total_cases, err = ek.get_data(rics_rcep_total_cases, fields)
+
+    df_rcep_total_cases['Description'] = get_events_descriptions(rics_rcep_total_cases)
 
     # RCEP Contries Covid-19 new cases
-    rics_rcep_new_cases = ['BNNCOV=ECI','KHNCOV=ECI','IDNCOV=ECI','LANCOV=ECI','MYNCOV=ECI','MMNCOV=ECI','PHNCOV=ECI','SGNCOV=ECI','THNCOV=ECI','VNNCOV=ECI','CNNCOV=ECI','JPNCOV=ECI','KRNCOV=ECI','AUNCOV=ECI','NZNCOV=ECI']
-
+    
     df_rcep_new_cases, err = ek.get_data(rics_rcep_new_cases, fields)
     # Add 'Description' column (example value: 'Thailand New Cases', etc.)
     df_rcep_new_cases['Description'] = get_events_descriptions(rics_rcep_new_cases)
     
     # RCEP Contries Covid-19 death cases
-    rics_rcep_death_cases = ['BNDCOV=ECI','KHDCOV=ECI','IDDCOV=ECI','LADCOV=ECI','MYDCOV=ECI','MMDCOV=ECI','PHDCOV=ECI','SGDCOV=ECI','THDCOV=ECI','VNDCOV=ECI','CNDCOV=ECI','JPDCOV=ECI','KRDCOV=ECI','AUDCOV=ECI','NZDCOV=ECI']
+    
 
     df_rcep_death_cases, err = ek.get_data(rics_rcep_death_cases, fields)
     # Add 'Description' column (example value: 'Thailand Death Cases', etc.)

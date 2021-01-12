@@ -5,6 +5,7 @@
 # |           Copyright Refinitiv 2021. All rights reserved.                  --
 # |-----------------------------------------------------------------------------
 
+#Import Eikon and Main Modules
 import eikon as ek
 import configparser as cp
 import json

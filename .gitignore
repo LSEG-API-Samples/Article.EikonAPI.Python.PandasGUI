@@ -1,11 +1,5 @@
 .vscode/
-notebook/rdp.cfg
-notebook/.ipynb_checkpoints/
-notebook/fundamentals_geographic_sale.ipynb
-notebook/rdp_xlwingsce_notebook.ipynb
-notebook/rdp_esg.ipynb
-notebook/covid_th_test1.ipynb
-notebook/Cars.ipynb
+notebook/
 note.txt
 debug.log
 testApp.py

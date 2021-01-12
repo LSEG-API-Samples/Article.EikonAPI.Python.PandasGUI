@@ -8,8 +8,6 @@
 #Import Eikon and Main Modules
 import eikon as ek
 import configparser as cp
-import json
-import datetime
 
 # Pandas
 import pandas as pd
@@ -108,10 +106,6 @@ if __name__ == "__main__":
 
     # Get Thailand Today Covid-19 static
     df_thailand, err = ek.get_data(rics_thailand, fields)
-    
-    # Rename Instrument to be readable value
-    #events_rename={'THCCOV=ECI': 'Total Cases','THNCOV=ECI': 'New Cases', 'THRCOV=ECI': 'Recover Cases', 'THACOV=ECI': 'Active Cases', 'THDCOV=ECI': 'Death Cases'}
-    #df_thailand.replace(events_rename, inplace = True)
 
     # Today Data for RCEP Countries static
 
@@ -142,16 +136,16 @@ if __name__ == "__main__":
 
     print("#----------- Requesting Historical Data -------------#")
 
-    df_thailand_historical = ek.get_timeseries(rics_thailand, start_date='2020-01-01', end_date='2021-01-06', interval='daily')
+    df_thailand_historical = ek.get_timeseries(rics_thailand, start_date='2020-01-01', end_date='2021-01-12', interval='daily')
     # Change RIC columns names to be readable values (example value: 'Thailand New Cases', etc.)
     df_thailand_historical.rename(columns=get_events_columns(rics_thailand), inplace = True)
 
-    df_rcep_historical_new_cases = ek.get_timeseries(rics_rcep_new_cases, start_date='2020-01-01', end_date='2021-01-06', interval='daily')
+    df_rcep_historical_new_cases = ek.get_timeseries(rics_rcep_new_cases, start_date='2020-01-01', end_date='2021-01-12', interval='daily')
     # Change RIC columns names to be readable values (example value: 'Thailand New Cases', etc.)
     df_rcep_historical_new_cases.rename(columns=get_events_columns(rics_rcep_new_cases), inplace = True)
 
 
-    df_rcep_historical_death_cases = ek.get_timeseries(rics_rcep_death_cases, start_date='2020-01-01', end_date='2021-01-06', interval='daily')
+    df_rcep_historical_death_cases = ek.get_timeseries(rics_rcep_death_cases, start_date='2020-01-01', end_date='2021-01-12', interval='daily')
     # Change RIC columns names to be readable values (example value: 'Thailand New Cases', etc.)
     df_rcep_historical_death_cases.rename(columns=get_events_columns(rics_rcep_death_cases), inplace = True)
 

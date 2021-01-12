@@ -91,7 +91,7 @@ if __name__ == "__main__":
     print('#----------- Initialize Session -------------#')
     cfg = cp.ConfigParser()
     cfg.read('credential.cfg')
-    ek.set_app_key(cfg['workspace']['app_key'])
+    ek.set_app_key(cfg['workspace']['app_id'])
 
     # Get Today Data
 

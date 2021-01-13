@@ -35,7 +35,7 @@ The  [Eikon Data API](https://developers.refinitiv.com/en/api-catalog/eikon/eiko
 ## <a id="prerequisite"></a>Prerequisite
 This example requires the following dependencies software and libraries.
 1. Refinitiv Eikon or Refinitiv Workspace application with access to Eikon Data APIs.
-2. Python [Ananconda](https://www.anaconda.com/distribution/) or [MiniConda](https://docs.conda.io/en/latest/miniconda.html) distribution/package manager.
+2. Python [Anaconda](https://www.anaconda.com/distribution/) or [MiniConda](https://docs.conda.io/en/latest/miniconda.html) distribution/package manager.
 3. Internet connection.
 
 *Note:* 

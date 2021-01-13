@@ -1,4 +1,4 @@
-# Using PandasGUI to analyze Pandas DataFrames with GUI
+# Using PandasGUI to analyze Pandas DataFrames on Graphical user interface
 - Last update: January 2021
 - Environment: Windows 
 - Compiler: Python and Conda distribution
@@ -8,7 +8,7 @@
 
 With the rise of Data Scientists, Financial coders, or Traders (aka Citizen Developers), the [Pandas library](https://pandas.pydata.org/) has become the defacto tool for data analysis with [Python programming language](https://www.python.org/). Pandas is powerful, flexible, has excellent community support, and it keeps improving. However, developers require a great skill of Python and the library to using Pandas efficiently. This learning curve makes some developers and data scientists stuck with the "coding" time instead of "analysis" time.
 
-he [PandasGUI](https://github.com/adamerose/PandasGUI) is the Graphical User Interface tool that can solve this learning curve issue. The tool wraps Pandas functions into an easy to use data analytic tool for developers and data scientists to start with. This example project shows how to use PandasGUI] too for the basic data analysis with the simple GUI interface. The demo application uses Corona Virus Disease (COVID-19) data from [Eikon Data API](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api) as an example of a dataset.
+[PandasGUI](https://github.com/adamerose/PandasGUI) is the Graphical User Interface tool that can solve this learning curve issue. The tool wraps Pandas functions into an easy to use data analytic tool for developers and data scientists to start with. This example project shows how to use PandasGUI] too for the basic data analysis with the simple GUI interface. The demo application uses Corona Virus Disease (COVID-19) data from [Eikon Data API](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api) as an example of a dataset.
 
 *Note*:
 The PandasGUI tool is still under development. The tool **is not compatible** with Eikon Data API and [Refinitiv Data Platform (RDP) Libraries](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-libraries) - Python on IPython/Notebook environment yet. This example project is focusing on the console environment only.

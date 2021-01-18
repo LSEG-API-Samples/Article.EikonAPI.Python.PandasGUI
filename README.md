@@ -28,6 +28,10 @@ The  [Eikon Data API](https://developers.refinitiv.com/en/api-catalog/eikon/eiko
 
 ![Figure-1](images/dapi_overview1.png "Eikon Data API Overview") 
 
+If you are not familiar with Eikon Data API or Python, the following resources are highly recommended to read before you proceed with further steps.
+- [Setting up a Python development environment](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/tutorials#setting-up-a-python-development-environment).
+- [Eikon Data API Quick Start](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/quick-start).
+
 *Note*:
 - This project is based on Eikon Data API versions **1.1.8**.
 - Pleases see [Eikon Data API Usage and Limits Guideline](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/documentation#eikon-data-api-usage-and-limits-guideline) regarding the API data coverage and data limit. 
@@ -94,21 +98,23 @@ The first step is to unzip or download the example project folder into a directo
 
 ## <a id="results"></a>Example Results
 
-*simple_covid_19_app.py:*
+Example of simple_covid_19_app.py Result:
 
 ![Figure-2](images/simple_gui_1.png "USA COVID-19 Today DataFrame") 
 
 ![Figure-3](images/simple_gui_2.png "USA COVID-19 Today Statistics") 
 
-![Figure-4](images/simple_gui_3.png "USA COVID-19 Today Graph") 
+You can interact with DataFrame, plotting a graph, etc. via the GUI directly.
 
-*rcep_covid19_data_app.py:*
+![Figure-4](images/simple_pandas_gui1.gif "Data Editing") 
 
-![Figure-5](images/rcep_gui_1.png "RCEP COVID-19 DataFrames") 
+![Figure-5](images/simple_pandas_gui2.gif "Plotting a Pie Chart") 
 
-![Figure-6](images/rcep_gui_2.png "RCEP COVID-19 New Cases History Statistics") 
+Example of rcep_covid19_data_app.py Result:
 
-![Figure-7](images/rcep_gui_3.png "RCEP COVID-19 New Cases History Graph") 
+![Figure-6](images/rcep_pandas_gui1.gif "RCEP COVID-19 DataFrames") 
+
+![Figure-7](images/rcep_pandas_gui2.gif "RCEP COVID-19 New Cases History Graph") 
 
 ## <a id="summary"></a>Conclusion
 
@@ -129,6 +135,6 @@ You can find more detail regarding the PandasGUI, Eikon Data APIs, and related t
 * [Python Quants Video Tutorial Series for Eikon API](https://community.developers.refinitiv.com/questions/37865/announcement-new-python-quants-video-tutorial-seri.html).
 * [Eikon Data APY Python Reference Guide](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/documentation#eikon-data-ap-is-for-python-reference-guide).
 * [Eikon Data API Troubleshooting article](https://developers.refinitiv.com/en/article-catalog/article/eikon-data-api-python-troubleshooting-refinitiv).
-* [Get Coronavirus Cases Latest And Timeseries Statistic with Eikon Data API(Python) article](https://github.com/Refinitiv-API-Samples/Article.EikonAPI.Python.CoronavirusStatistic)
+* [Get Corona Virus Cases Latest And Time-series Statistic with Eikon Data API(Python) example](https://github.com/Refinitiv-API-Samples/Article.EikonAPI.Python.CoronavirusStatistic)
 
 For any question related to this example or Eikon Data API, please use the Developers Community [Q&A Forum](https://community.developers.refinitiv.com/spaces/92/eikon-scripting-apis.html).

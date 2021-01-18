@@ -9,7 +9,7 @@
 import eikon as ek
 import configparser as cp
 
-# Pandas
+# Pandas and PandasGUI
 import pandas as pd
 from pandasgui import show
 
@@ -60,11 +60,11 @@ RCEP: Regional Comprehensive Economic Partnership
 """
 # Thailand all static
 rics_thailand = ['THCCOV=ECI','THNCOV=ECI','THRCOV=ECI','THACOV=ECI','THDCOV=ECI']
-# RCEP Contries Covid-19 total cases
+# RCEP Countries  Covid-19 total cases
 rics_rcep_total_cases = ['BNCCOV=ECI','KHCCOV=ECI','IDCCOV=ECI','LACCOV=ECI','MYCCOV=ECI','MMCCOV=ECI','PHCCOV=ECI','SGCCOV=ECI','THCCOV=ECI','VNCCOV=ECI','CNCCOV=ECI','JPCCOV=ECI','KRCCOV=ECI','AUCCOV=ECI','NZCCOV=ECI']
-# RCEP Contries Covid-19 new cases
+# RCEP Countries  Covid-19 new cases
 rics_rcep_new_cases = ['BNNCOV=ECI','KHNCOV=ECI','IDNCOV=ECI','LANCOV=ECI','MYNCOV=ECI','MMNCOV=ECI','PHNCOV=ECI','SGNCOV=ECI','THNCOV=ECI','VNNCOV=ECI','CNNCOV=ECI','JPNCOV=ECI','KRNCOV=ECI','AUNCOV=ECI','NZNCOV=ECI']
-# RCEP Contries Covid-19 death cases
+# RCEP Countries  Covid-19 death cases
 rics_rcep_death_cases = ['BNDCOV=ECI','KHDCOV=ECI','IDDCOV=ECI','LADCOV=ECI','MYDCOV=ECI','MMDCOV=ECI','PHDCOV=ECI','SGDCOV=ECI','THDCOV=ECI','VNDCOV=ECI','CNDCOV=ECI','JPDCOV=ECI','KRDCOV=ECI','AUDCOV=ECI','NZDCOV=ECI']
 
 # Get a List of readable Country Name and Event for adding new DataFrame column
@@ -97,16 +97,6 @@ if __name__ == "__main__":
 
     print("#----------- Requesting Today Data -------------#")
 
-    fields = ['DSPLY_NMLL', #Display Name
-            'COUNTRY',    #Country code
-            'CF_DATE', #Announcement Date
-            'ECON_ACT', #Actual value
-            'ECON_PRIOR' #Previous value
-    ]
-
-    # Get Thailand Today Covid-19 static
-    df_thailand, err = ek.get_data(rics_thailand, fields)
-
     # Today Data for RCEP Countries static
 
     fields = ['COUNTRY',    #Country code
@@ -114,18 +104,24 @@ if __name__ == "__main__":
             'ECON_ACT', #Actual value
             'ECON_PRIOR' #Previous value
     ]
-    # RCEP Contries Covid-19 total cases
+    # RCEP Countries  Covid-19 total cases
     df_rcep_total_cases, err = ek.get_data(rics_rcep_total_cases, fields)
+    if err is None:
+        print('Example RCEP COVID-19 Total Cases Today Data:')
+        print(df_rcep_total_cases.head())
 
+    # Add 'Description' column (example value: 'Thailand Total Cases', etc.)
     df_rcep_total_cases['Description'] = get_events_descriptions(rics_rcep_total_cases)
+    print('DataFrame after added Description column')
+    print(df_rcep_total_cases.head())
 
-    # RCEP Contries Covid-19 new cases
+    # RCEP Countries  Covid-19 new cases
     
     df_rcep_new_cases, err = ek.get_data(rics_rcep_new_cases, fields)
     # Add 'Description' column (example value: 'Thailand New Cases', etc.)
     df_rcep_new_cases['Description'] = get_events_descriptions(rics_rcep_new_cases)
     
-    # RCEP Contries Covid-19 death cases
+    # RCEP Countries Covid-19 death cases
     
 
     df_rcep_death_cases, err = ek.get_data(rics_rcep_death_cases, fields)
@@ -136,20 +132,26 @@ if __name__ == "__main__":
 
     print("#----------- Requesting Historical Data -------------#")
 
-    df_thailand_historical = ek.get_timeseries(rics_thailand, start_date='2020-01-01', end_date='2021-01-12', interval='daily')
-    # Change RIC columns names to be readable values (example value: 'Thailand New Cases', etc.)
-    df_thailand_historical.rename(columns=get_events_columns(rics_thailand), inplace = True)
+    df_rcep_historical_total_cases = ek.get_timeseries(rics_rcep_total_cases, start_date='2020-01-01', end_date='2021-01-12', interval='daily')
+    print('Example RCEP COVID-19 Total Cases Today Data:')
+    print(df_rcep_historical_total_cases.head())
+
+    # Change RIC column names to be readable values (example value: 'Thailand New Cases', etc.)
+    df_rcep_historical_total_cases.rename(columns=get_events_columns(rics_rcep_total_cases), inplace = True)
+    print('DataFrame after changed instrument columns names to readable values')
+    print(df_rcep_historical_total_cases.head())
 
     df_rcep_historical_new_cases = ek.get_timeseries(rics_rcep_new_cases, start_date='2020-01-01', end_date='2021-01-12', interval='daily')
-    # Change RIC columns names to be readable values (example value: 'Thailand New Cases', etc.)
+    # Change RIC column names to be readable values (example value: 'Thailand New Cases', etc.)
     df_rcep_historical_new_cases.rename(columns=get_events_columns(rics_rcep_new_cases), inplace = True)
 
 
     df_rcep_historical_death_cases = ek.get_timeseries(rics_rcep_death_cases, start_date='2020-01-01', end_date='2021-01-12', interval='daily')
-    # Change RIC columns names to be readable values (example value: 'Thailand New Cases', etc.)
+    # Change RIC column names to be readable values (example value: 'Thailand New Cases', etc.)
     df_rcep_historical_death_cases.rename(columns=get_events_columns(rics_rcep_death_cases), inplace = True)
 
     # Fill missing value as 0
+    df_rcep_historical_total_cases.fillna(0 ,inplace = True )
     df_rcep_historical_new_cases.fillna(0 ,inplace = True )
     df_rcep_historical_death_cases.fillna(0 ,inplace = True )
 
@@ -157,11 +159,10 @@ if __name__ == "__main__":
 
     # Create Data Dictionary to sends all DataFrame objects to PandasGUI
     dataset = {
-        'Thailand Today Cases': df_thailand,
         'RCEP Today Total Cases': df_rcep_total_cases, 
         'RCEP Today New Cases': df_rcep_new_cases, 
         'RCEP Today Death Cases': df_rcep_death_cases, 
-        'Thailand Historical Cases': df_thailand_historical,
+        'RCEP Historical Total Cases': df_rcep_historical_total_cases,
         'RCEP Historical New Cases': df_rcep_historical_new_cases,
         'RCEP Historical Death Cases': df_rcep_historical_death_cases,
     }

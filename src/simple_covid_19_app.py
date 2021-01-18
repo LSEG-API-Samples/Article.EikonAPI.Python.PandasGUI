@@ -9,7 +9,7 @@
 import eikon as ek
 import configparser as cp
 
-# Pandas
+# Pandas and PandasGUI
 import pandas as pd
 from pandasgui import show
 
@@ -37,7 +37,7 @@ fields = ['DSPLY_NMLL', #Display Name
             'ECON_ACT', #Actual value
             'ECON_PRIOR' #Previous value
 ]
-# Get usa Today Covid-19 static
+# Get usa Today Covid-19 statistics
 df_usa_today, err = ek.get_data(rics_usa_today, fields)
 if err is None:
     print(df_usa_today)

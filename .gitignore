@@ -10,3 +10,7 @@ logs/
 test.py
 scr/credential.cfg
 src/result.txt
+video/
+src/demo_app.py
+src/demo_app2.py
+src/demo_app3.py

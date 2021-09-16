@@ -1,5 +1,5 @@
 # Using PandasGUI to analyze Pandas DataFrames on Graphical user interface
-- Last update: January 2021
+- Last update: September 2021
 - Environment: Windows 
 - Compiler: Python and Conda distribution
 - Prerequisite: Refinitiv Eikon or Refinitiv Workspace application with access to Eikon Data APIs.
@@ -45,7 +45,7 @@ This example requires the following dependencies software and libraries.
 *Note:* 
 - This Project has been qualified with Python version 3.7.9 and Conda version 4.8.3
 
-Please contact your Refinitiv's representative to help you to access Refinitiv Workspace/Eikon credentials. You can generate/manage the AppKey from the  [AppKeyGenerator web site](https://emea1.apps.cp.thomsonreuters.com/apps/AppkeyGenerator) or AppKey Generator tool in Eikon Desktop/Refinitiv Workspace application. 
+Please contact your Refinitiv's representative to help you to access Refinitiv Workspace/Eikon credentials. You can generate/manage the AppKey by follow the steps in [Eikon Data API Quick Start](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/quick-start) page.
 
 ## <a id="application_files"></a>Application Files
 This example project contains the following files and folders
@@ -59,8 +59,6 @@ This example project contains the following files and folders
 ## <a id="eikon_setup"></a>Eikon Data API Setup
 
 Please follow a step by step guide to setup your Eikon Data API and your AppKey in [Eikon Data API Quick Start page](https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/quick-start). 
-
-Please note that you can also create your Appkey via <a href="https://amers1.apps.cp.thomsonreuters.com/apps/AppkeyGenerator">AppKey Generator web site</a>.
 
 ## <a id="running"></a>How to run this example
 
